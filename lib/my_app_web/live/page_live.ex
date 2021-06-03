@@ -25,7 +25,7 @@ defmodule MyAppWeb.PageLive do
   end
 
   defp presign_upload(_entry, socket) do
-    meta = %{uploader: "Gcs", endpoint: "http://non-existing-url-as-an-example.com"}
+    meta = %{uploader: "Gcs", endpoint: "http://localhost:4000/upload"}
     {:ok, meta, socket}
   end
 
