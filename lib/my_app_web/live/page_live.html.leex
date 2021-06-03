@@ -1,0 +1,29 @@
+<section class="phx-hero">
+  <h1>Example upload</h1>
+
+  <form id="upload-form" phx-submit="save" phx-change="validate">
+    <%= live_file_input @uploads.avatar %>
+    <button type="submit">Upload</button>
+  </form>
+
+  <section phx-drop-target="<%= @uploads.avatar.ref %>">
+
+  <%= for entry <- @uploads.avatar.entries do %>
+    <article class="upload-entry">
+
+      <figure>
+        <%= live_img_preview entry %>
+        <figcaption><%= entry.client_name %></figcaption>
+      </figure>
+
+      <progress value="<%= entry.progress %>" max="100"> <%= entry.progress %>% </progress>
+
+      <%= for err <- upload_errors(@uploads.avatar, entry) do %>
+        <p class="alert alert-danger"><%= error_to_string(err) %></p>
+      <% end %>
+
+    </article>
+  <% end %>
+
+  </section>
+</section>
